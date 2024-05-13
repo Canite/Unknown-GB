@@ -29,6 +29,10 @@ struct Camera
     uint16_t y;
     uint16_t oldX;
     uint16_t oldY;
+    uint16_t targetX;
+    uint16_t targetY;
+    int8_t xSpd;
+    int8_t ySpd;
     uint8_t redraw;
 };
 
@@ -63,6 +67,8 @@ void init_camera(void);
 void init_window(void);
 void update_window(void);
 void update_camera(void);
+void set_camera_target(void);
+void update_camera_coordinates(void);
 void clear_background(void);
 void fade_out(void);
 void fade_in(void);

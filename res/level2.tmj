@@ -68,14 +68,14 @@
                 {
                  "height":0,
                  "id":1,
-                 "name":"",
+                 "name":"player_spawn",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":16,
-                 "y":80
+                 "x":56,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",

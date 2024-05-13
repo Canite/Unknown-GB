@@ -22,6 +22,10 @@ void init_camera(void)
     camera.y = 0;
     camera.oldX = 0;
     camera.oldY = 0;
+    camera.targetX = 0;
+    camera.targetY = 0;
+    camera.xSpd = 0;
+    camera.ySpd = 0;
     camera.redraw = 0;
 }
 
@@ -304,6 +308,53 @@ void update_camera(void) NONBANKED
     }
 
     SWITCH_ROM(currentBank);
+}
+
+void set_camera_target(void)
+{
+    uint16_t playerPixelX = SUBPIXELS_TO_PIXELS(player.x);
+    uint16_t playerPixelY = SUBPIXELS_TO_PIXELS(player.y);
+
+    if (playerPixelX > 80) camera.targetX = playerPixelX - 80;
+    if (playerPixelY > 84) camera.targetY = playerPixelY - 84;
+    if (camera.targetX > ((game.level_data.tile_width << 3) - 160)) camera.targetX = ((game.level_data.tile_width << 3) - 160);
+    if (camera.targetY > ((game.level_data.tile_height << 3) - 144)) camera.targetY = ((game.level_data.tile_height << 3) - 144);
+}
+
+void update_camera_coordinates(void)
+{
+    if (camera.x != camera.targetX || camera.y != camera.targetY)
+    {
+        // tried to do some lerp on the camera but it ends being headachey
+        /*
+        if (camera.x > camera.targetX)
+        {
+            camera.xSpd = -((camera.x - camera.targetX) >> 2);
+        }
+        else 
+        {
+            camera.xSpd = (camera.targetX - camera.x) >> 2;
+        }
+
+        if (camera.y > camera.targetY)
+        {
+            camera.ySpd = -((camera.y - camera.targetY) >> 2);
+        }
+        else 
+        {
+            camera.ySpd = (camera.targetY - camera.y) >> 2;
+        }
+
+        if (camera.xSpd == 0) camera.xSpd = sign(camera.targetX - camera.x);
+        if (camera.ySpd == 0) camera.ySpd = sign(camera.targetY - camera.y);
+
+        camera.x += camera.xSpd;
+        camera.y += camera.ySpd;
+        */
+        camera.x = camera.targetX;
+        camera.y = camera.targetY;
+        camera.redraw = 1;
+    }
 }
 
 void update_game_sprites(void)

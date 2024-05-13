@@ -61,6 +61,7 @@ void game_loop(void)
             case GS_INGAME:
                 process_game_input();
                 apply_physics();
+                update_camera_coordinates();
                 update_game_sprites();
                 update_window();
                 update_background();
@@ -101,6 +102,9 @@ void start_level(void)
 {
     if (game.currentLevel > NUM_LEVELS)
     {
+        for (int i = 0; i < 32; i++)
+            hide_sprite(i);
+
         init_end_screen();
         init_camera();
         camera.redraw = 1;
@@ -111,7 +115,5 @@ void start_level(void)
     else
     {
         init_level(game.currentLevel);
-        init_camera();
-        camera.redraw = 1;
     }
 }

@@ -100,6 +100,41 @@ const level_t levels[] = {
         .spawn_y = level9_spawn_y,
         .door_open = level9_door_open,
     },
+    {
+        .tiles = level10_tiles,
+        .tiles_bank = BANK(level10_tiles),
+        .collisions = level10_collisions,
+        .collisions_bank = BANK(level10_collisions),
+        .tile_width = level10_tile_width,
+        .tile_height = level10_tile_height,
+        .spawn_x = level10_spawn_x,
+        .spawn_y = level10_spawn_y,
+        .door_open = level10_door_open,
+    },
+    {
+        .tiles = level11_tiles,
+        .tiles_bank = BANK(level11_tiles),
+        .collisions = level11_collisions,
+        .collisions_bank = BANK(level11_collisions),
+        .tile_width = level11_tile_width,
+        .tile_height = level11_tile_height,
+        .spawn_x = level11_spawn_x,
+        .spawn_y = level11_spawn_y,
+        .door_open = level11_door_open,
+    },
+    /*
+    {
+        .tiles = level12_tiles,
+        .tiles_bank = BANK(level12_tiles),
+        .collisions = level12_collisions,
+        .collisions_bank = BANK(level12_collisions),
+        .tile_width = level12_tile_width,
+        .tile_height = level12_tile_height,
+        .spawn_x = level12_spawn_x,
+        .spawn_y = level12_spawn_y,
+        .door_open = level12_door_open,
+    },
+    */
 };
 
 void init_title(void)
@@ -138,6 +173,13 @@ void init_level(uint8_t level) NONBANKED
         {
             game.flags |= GF_DOOR_OPEN;
         }
+
+        init_player(initSprites, game.level_data.spawn_x, game.level_data.spawn_y);
+        camera.targetX = 0;
+        camera.targetY = 0;
+        set_camera_target();
+        update_camera_coordinates();
+
         uint8_t currentBank = CURRENT_BANK;
 
         SWITCH_ROM(BANK(caverns));
@@ -147,11 +189,10 @@ void init_level(uint8_t level) NONBANKED
         set_win_data(caverns_TILE_COUNT, font_bold_TILE_COUNT, font_bold_tiles);
 
         SWITCH_ROM(game.level_data.tiles_bank);
-        set_bkg_submap(0, 0, 20, 18, game.level_data.tiles, game.level_data.tile_width);
+        set_bkg_submap((uint8_t)(camera.x >> 3u), (uint8_t)(camera.y >> 3u), 21, 19, game.level_data.tiles, game.level_data.tile_width);
 
         SWITCH_ROM(currentBank);
 
-        init_player(initSprites, game.level_data.spawn_x, game.level_data.spawn_y);
         init_key(initSprites);
         init_atl(initSprites);
         gfx.sprites_inited = 1;
