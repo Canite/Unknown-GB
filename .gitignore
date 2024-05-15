@@ -8,3 +8,4 @@ web/
 *.zip
 .cache/
 compiledb_venv/
+*.tiled-session

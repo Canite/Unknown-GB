@@ -122,7 +122,6 @@ const level_t levels[] = {
         .spawn_y = level11_spawn_y,
         .door_open = level11_door_open,
     },
-    /*
     {
         .tiles = level12_tiles,
         .tiles_bank = BANK(level12_tiles),
@@ -134,7 +133,50 @@ const level_t levels[] = {
         .spawn_y = level12_spawn_y,
         .door_open = level12_door_open,
     },
-    */
+    {
+        .tiles = level13_tiles,
+        .tiles_bank = BANK(level13_tiles),
+        .collisions = level13_collisions,
+        .collisions_bank = BANK(level13_collisions),
+        .tile_width = level13_tile_width,
+        .tile_height = level13_tile_height,
+        .spawn_x = level13_spawn_x,
+        .spawn_y = level13_spawn_y,
+        .door_open = level13_door_open,
+    },
+    {
+        .tiles = level14_tiles,
+        .tiles_bank = BANK(level14_tiles),
+        .collisions = level14_collisions,
+        .collisions_bank = BANK(level14_collisions),
+        .tile_width = level14_tile_width,
+        .tile_height = level14_tile_height,
+        .spawn_x = level14_spawn_x,
+        .spawn_y = level14_spawn_y,
+        .door_open = level14_door_open,
+    },
+    {
+        .tiles = level15_tiles,
+        .tiles_bank = BANK(level15_tiles),
+        .collisions = level15_collisions,
+        .collisions_bank = BANK(level15_collisions),
+        .tile_width = level15_tile_width,
+        .tile_height = level15_tile_height,
+        .spawn_x = level15_spawn_x,
+        .spawn_y = level15_spawn_y,
+        .door_open = level15_door_open,
+    },
+    {
+        .tiles = level16_tiles,
+        .tiles_bank = BANK(level16_tiles),
+        .collisions = level16_collisions,
+        .collisions_bank = BANK(level16_collisions),
+        .tile_width = level16_tile_width,
+        .tile_height = level16_tile_height,
+        .spawn_x = level16_spawn_x,
+        .spawn_y = level16_spawn_y,
+        .door_open = level16_door_open,
+    },
 };
 
 void init_title(void)
@@ -167,7 +209,7 @@ void init_level(uint8_t level) NONBANKED
     if (level > 0 && level <= NUM_LEVELS)
     {
         game.level_data = levels[level - 1];
-        game.flags = GF_NONE;
+        game.flags &= ~(GF_DOOR_OPEN | GF_ITEM_PICKED);
         game.levelFrame = 0;
         if (game.level_data.door_open == 1)
         {

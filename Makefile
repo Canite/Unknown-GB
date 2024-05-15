@@ -8,8 +8,11 @@
 ifdef OS
 	GBDK_HOME = "F:/gbdk/"
 	RGBDS_HOME = "F:/GBDev/rgbds-0.6.1-win64/"
-	EMULATOR = "F:/bgb/bgb.exe"
 	HUGE_HOME = "F:/hugetracker"
+	EMULATOR_gb = "F:/bgb/bgb.exe"
+	EMULATORFLAGS_gb = 
+	EMULATOR_nes = 
+	EMULATORFLAGS_nes = 
 else
 	GBDK_HOME = /home/canight/gbdk/
 	RGBDS_HOME = /home/canight/rgbds

@@ -139,6 +139,7 @@ void apply_physics(void) BANKED
         else
         {
             player.ySpd += GRAVITY_CONST;
+            player.ySpd = MIN(MAX_Y_SPEED_IN_SUBPIXELS << 1, player.ySpd);
         }
 
         // decelerate Y and X

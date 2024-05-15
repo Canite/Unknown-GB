@@ -241,7 +241,7 @@ void update_window(void)
     }
 
     // level counter
-    if (window.drawn_level != game.currentLevel || window.drawn_level == 255)
+    if (game.gameState != GS_FADE_OUT && (window.drawn_level != game.currentLevel || window.drawn_level == 255))
     {
         window.drawn_level = game.currentLevel;
 
@@ -359,6 +359,12 @@ void update_camera_coordinates(void)
 
 void update_game_sprites(void)
 {
+    // Don't draw sprites on the end screen
+    if (game.nextState == GS_END)
+    {
+        return;
+    }
+
     // Player sprite start
     set_sprite_tile(PLAYER_SPRITE_INDEX, player.animIndex + player.animFrame);
     if ((game.gameFrame & player.animSpeed) == player.animSpeed)
@@ -461,7 +467,6 @@ void draw_end_screen(void)
     if (gfx.update_background)
     {
         gfx.update_background = 0;
-        hide_sprite(PLAYER_SPRITE_INDEX);
         set_bkg_tiles(8, 11, 5, 1, &window.level_timer_tiles[1]);
         set_bkg_tiles(8, 8, 3, 1, &window.death_counter_tiles[1]);
     }

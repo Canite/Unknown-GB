@@ -34,6 +34,7 @@ enum GameFlags
     GF_NONE = 0x00,
     GF_DOOR_OPEN = 0x01,
     GF_ITEM_PICKED = 0x02,
+    GF_CHEAT_ENABLED = 0x80,
 };
 
 struct Game

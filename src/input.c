@@ -19,6 +19,10 @@ void process_title_input(void) BANKED
         game.currentLevel += 1;
         gfx.fade_delay = 30;
         gfx.fade_step_length = 5;
+        if (INPUT_KEY(J_UP) && INPUT_KEY(J_B))
+        {
+            game.flags |= GF_CHEAT_ENABLED;
+        }
     }
 }
 
@@ -27,7 +31,7 @@ void process_game_input(void) BANKED
 {
     // DEBUG
     // level change
-    if (INPUT_KEY(J_SELECT))
+    if ((game.flags & GF_CHEAT_ENABLED) && INPUT_KEY(J_SELECT))
     {
         if (INPUT_KEYPRESS(J_LEFT))
         {
