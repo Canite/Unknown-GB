@@ -41,7 +41,7 @@ UGE2SOURCE = $(HUGE_HOME)/uge2source
 EXTDIR 		= ext
 
 # You can set flags for LCC here
-CFLAGS += -Iinclude -Iext -debug 
+CFLAGS += -Iinclude -Iext
 LCCFLAGS += $(LCCFLAGS_$(EXT))
 LCCFLAGS += -Wl-j -Wm-ya4 -autobank -Wb-ext=.rel -Wb-v
 LCCFLAGS += -Wl-l$(EXTDIR)/hUGEDriver.lib
@@ -69,6 +69,10 @@ OBJS        = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.asm=$(OBJDIR)/%.o) $(
 RESOBJS		= $(IMAGEFILES:%.png=$(RESDIR)/%.c) $(TILEDFILES:%.tmj=$(RESDIR)/%.c) $(HUGEFILES:%.uge=$(RESDIR)/%.c) $(SFXFILES:%.sav=$(RESDIR)/%.c)
 
 all:	prepare $(TARGETS)
+
+RELEASE 	?= 0
+release: RELEASE = 1
+release: prepare $(TARGETS)
 
 compile.bat: Makefile
 	@echo "REM Automatically generated from Makefile" > compile.bat

@@ -5,6 +5,12 @@ CFLAGS += -m$(PORT):$(PLAT)
 endif
 endif
 
+ifeq ($(RELEASE), 1)
+CFLAGS += -Wf--max-allocs-per-node50000 --opt-code-speed
+else
+CFLAGS += -debug
+endif
+
 # Called by the individual targets below to build a ROM
 build-target: $(BINS)
 
@@ -15,7 +21,7 @@ clean-target:
 gb-clean:
 	${MAKE} clean-target EXT=gb
 gb:
-	${MAKE} prepare build-target PORT=sm83 PLAT=gb EXT=gb
+	${MAKE} prepare build-target RELEASE=$(RELEASE) PORT=sm83 PLAT=gb EXT=gb
 gb-run:
 	${MAKE} run PLAT=gb EXT=gb
 
