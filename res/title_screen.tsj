@@ -3,7 +3,7 @@
  "imageheight":48,
  "imagewidth":64,
  "margin":0,
- "name":"tite_screen",
+ "name":"title_screen",
  "spacing":0,
  "tilecount":48,
  "tiledversion":"1.10.1",
