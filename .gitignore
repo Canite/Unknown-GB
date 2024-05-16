@@ -4,8 +4,8 @@ res/*.2bpp
 res/*.c
 res/*.h
 obj/
-web/
 *.zip
 .cache/
 compiledb_venv/
 *.tiled-session
+*.gb
