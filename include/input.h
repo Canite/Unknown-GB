@@ -2,7 +2,8 @@
 #define _INPUT_H
 
 #include <stdint.h>
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 
 #include "game.h"
 #include "physics.h"

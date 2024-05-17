@@ -2,7 +2,7 @@
 #define _PLAYER_H
 
 #include <stdint.h>
-#include <gb/gb.h>
+//#include <gb/gb.h>
 #include <gbdk/platform.h>
 #include <gbdk/console.h>
 
