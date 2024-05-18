@@ -35,7 +35,7 @@ void game_loop(void)
         joy_pressed = joy;
         joy_pressed &= ~old_joy;
         joy_released = ~joy;
-        joy_released &= ~old_joy;
+        joy_released &= old_joy;
 
         switch(game.gameState)
         {
