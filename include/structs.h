@@ -1,7 +1,8 @@
 #ifndef _STRUCTS_H
 #define _STRUCTS_H
 
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include <stdio.h>
 
 typedef struct level_t 

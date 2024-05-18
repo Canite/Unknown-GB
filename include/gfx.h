@@ -1,7 +1,8 @@
 #ifndef _GFX_H
 #define _GFX_H
 
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include <stdlib.h>
 #include <gbdk/platform.h>
 

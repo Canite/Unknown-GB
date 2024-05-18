@@ -53,13 +53,14 @@ RGB2SDAS = python $(UTILDIR)/rgb2sdas.py
 PROJECTNAME    = SlimeTrials
 
 SRCDIR      = src
+SRCPLAT     = src/$(PORT)
 OBJDIR      = obj/$(EXT)
 RESDIR      = res
 UTILDIR     = utils
 
 BINS	    = $(OBJDIR)/$(PROJECTNAME).$(EXT)
-CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(RESDIR),$(notdir $(wildcard $(dir)/*.c)))
-ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.asm)))
+CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SRCPLAT),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(RESDIR),$(notdir $(wildcard $(dir)/*.c)))
+ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s))) $(foreach dir,$(SRCPLAT),$(notdir $(wildcard $(dir)/*.s)))
 EXTASMSOURCES = $(foreach dir,$(EXTDIR),$(notdir $(wildcard $(dir)/*.asm)))
 IMAGEFILES  = $(foreach dir,$(RESDIR),$(notdir $(wildcard $(dir)/*.png)))
 TILEDFILES  = $(foreach dir,$(RESDIR),$(notdir $(wildcard $(dir)/*.tmj)))
@@ -98,6 +99,10 @@ $(RESDIR)/%.c: $(RESDIR)/%.sav
 
 # Compile .c files in "src/" to .o object files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
+	$(LCC) $(CFLAGS) -c -o $@ $<
+
+# Compile .c files in "src/" to .o object files
+$(OBJDIR)/%.o:	$(SRCPLAT)/%.c
 	$(LCC) $(CFLAGS) -c -o $@ $<
 
 # Compile .c files in "res/" to .o object files

@@ -2,7 +2,8 @@
 #define _UTILS_H
 
 #include <stdint.h>
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include "player.h"
 #include "game.h"
 

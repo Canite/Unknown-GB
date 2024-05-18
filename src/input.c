@@ -2,11 +2,10 @@
 
 #pragma bank 255
 
-BANKREF(joy)
 uint8_t joy = 0;
-
-BANKREF(old_joy)
 uint8_t old_joy = 0;
+uint8_t joy_pressed = 0;
+uint8_t joy_released = 0;
 
 BANKREF(process_title_input)
 void process_title_input(void) BANKED
@@ -51,7 +50,9 @@ void process_game_input(void) BANKED
     {
         music_play_sfx(BANK(sfx_11), sfx_11, SFX_MUTE_MASK(sfx_11), MUSIC_SFX_PRIORITY_NORMAL);
         game.gameState = GS_PAUSE;
+#if defined(NINTENDO)
         LYC_REG = 16;
+#endif
         return;
     }
 
@@ -392,7 +393,9 @@ void process_pause_input(void) BANKED
     if (INPUT_KEYPRESS(J_START))
     {
         game.gameState = GS_INGAME;
+#if defined(NINTENDO)
         LYC_REG = 8;
+#endif
     }
     else
     {

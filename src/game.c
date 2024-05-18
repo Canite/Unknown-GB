@@ -31,6 +31,11 @@ void game_loop(void)
         // Get new inputs
         old_joy = joy;
         joy = joypad();
+        // Optimization / compiler bug(?) work-around: Store variable for (joy & last_joy)
+        joy_pressed = joy;
+        joy_pressed &= ~old_joy;
+        joy_released = ~joy;
+        joy_released &= ~old_joy;
 
         switch(game.gameState)
         {

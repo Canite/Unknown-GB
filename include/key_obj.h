@@ -2,7 +2,8 @@
 #define _KEY_H
 
 #include <stdint.h>
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include "../res/key.h"
 #include "player.h"
 

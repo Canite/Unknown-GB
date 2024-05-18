@@ -228,7 +228,9 @@ void init_level(uint8_t level) NONBANKED
         set_bkg_data(0, caverns_TILE_COUNT, caverns_tiles);
 
         SWITCH_ROM(BANK(font_bold));
+#if defined(NINTENDO)
         set_win_data(caverns_TILE_COUNT, font_bold_TILE_COUNT, font_bold_tiles);
+#endif
 
         SWITCH_ROM(game.level_data.tiles_bank);
         set_bkg_submap((uint8_t)(camera.x >> 3u), (uint8_t)(camera.y >> 3u), 21, 19, game.level_data.tiles, game.level_data.tile_width);

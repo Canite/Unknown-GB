@@ -2,7 +2,8 @@
 #define _ATL_H
 
 #include <stdint.h>
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include "../res/atl.h"
 #include "player.h"
 

@@ -1,7 +1,8 @@
 #ifndef _GAME_H
 #define _GAME_H
 
-#include <gb/gb.h>
+//#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include <stdio.h>
 
 #include "structs.h"
