@@ -2,11 +2,10 @@
 
 #pragma bank 255
 
-BANKREF(joy)
 uint8_t joy = 0;
-
-BANKREF(old_joy)
 uint8_t old_joy = 0;
+uint8_t joy_pressed = 0;
+uint8_t joy_released = 0;
 
 BANKREF(process_title_input)
 void process_title_input(void) BANKED

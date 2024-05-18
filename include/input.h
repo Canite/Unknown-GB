@@ -14,16 +14,16 @@
 
 // new and previous values of the joypad input
 extern uint8_t joy;
-BANKREF_EXTERN(joy)
 extern uint8_t old_joy;
-BANKREF_EXTERN(old_joy)
+extern uint8_t joy_pressed;
+extern uint8_t joy_released;
 
 // check button down
 #define INPUT_KEY(key) (joy&(key))
 // check button press
-#define INPUT_KEYPRESS(key) ((joy & ~old_joy) & (key))
+#define INPUT_KEYPRESS(key) (joy_pressed & (key))
 // check button release
-#define INPUT_KEYRELEASE(key) ((~joy & old_joy) & (key))
+#define INPUT_KEYRELEASE(key) (joy_released & (key))
 
 void process_title_input(void) BANKED;
 BANKREF_EXTERN(process_title_input)
